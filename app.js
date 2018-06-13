@@ -4,8 +4,8 @@ var schedule = require("node-schedule");
 
 
 var midnight_rule = new schedule.RecurrenceRule();
-rule.hour = 0
-rule.minute = 1
+midnight_rule.hour = 0
+midnight_rule.minute = 1
 
 // This is your client. Some people call it `bot`, some people call it `self`, 
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
