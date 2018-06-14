@@ -4,8 +4,9 @@ var schedule = require("node-schedule");
 
 
 var midnight_rule = new schedule.RecurrenceRule();
-midnight_rule.hour = 0
-midnight_rule.minute = 1
+midnight_rule.hour = 0;
+midnight_rule.minute = 0;
+
 
 // This is your client. Some people call it `bot`, some people call it `self`, 
 // some might call it `cootchie`. Either way, when you see `client.something`, or `bot.something`,
@@ -70,18 +71,20 @@ client.on("message", async message => {
     const fetched = await message.channel.fetchMessages({limit: deleteCount});
     message.channel.bulkDelete(fetched)
       .catch(error => message.reply("Couldn't delete messages because of: ${error}"));
+    console.log('Purged' + deleteCount + ' messages');
   }
 
   if(command === "purgemidnight") {
     const deleteCount = 100;
 
     var j = schedule.scheduleJob(midnight_rule, function(){
+      const fetched = await message.channel.fetchMessages({limit: deleteCount});
+      message.channel.bulkDelete(fetched)
+      .catch(error => message.reply("Couldn't delete messages because of: ${error}"));
       console.log('Purged' + deleteCount + ' messages');
     });
 
-    const fetched = await message.channel.fetchMessages({limit: deleteCount});
-    message.channel.bulkDelete(fetched)
-      .catch(error => message.reply("Couldn't delete messages because of: ${error}"));
+
   }
 });
 
