@@ -77,7 +77,7 @@ client.on("message", async message => {
   if(command === "purgemidnight") {
     const deleteCount = 100;
 
-    var j = schedule.scheduleJob(midnight_rule, function(){
+    var j = schedule.scheduleJob(midnight_rule, async function(){
       const fetched = await message.channel.fetchMessages({limit: deleteCount});
       message.channel.bulkDelete(fetched)
       .catch(error => message.reply("Couldn't delete messages because of: ${error}"));
