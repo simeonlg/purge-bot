@@ -23,7 +23,7 @@ client.on("ready", () => {
   console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
   // Example of changing the bot's playing game to something useful. `client.user` is what the
   // docs refer to as the "ClientUser".
-  client.user.setActivity("Midnight Purge");
+  client.user.setActivity("Awaiting midnight purge job");
 });
 
 client.on("guildCreate", guild => {
@@ -84,7 +84,7 @@ client.on("message", async message => {
       console.log('Purged' + deleteCount + ' messages');
     });
 
-
+    client.user.setActivity("Ready to purge at midnight");
   }
 });
 
